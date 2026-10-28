@@ -8,6 +8,7 @@ import argparse
 from pathlib import Path
 from typing import Literal
 
+import logfire
 import segno
 
 ErrorLevel = Literal["L", "M", "Q", "H"]
@@ -29,7 +30,9 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("-s", "--scale", type=int, default=10, help="pixels per module")
     args = parser.parse_args(argv)
 
+    logfire.configure(send_to_logfire="if-token-present", console=False)
     try:
-        build(args.data, error=args.error).save(args.output, scale=args.scale)
+        with logfire.span("build qr code", output=str(args.output), error=args.error, scale=args.scale):
+            build(args.data, error=args.error).save(args.output, scale=args.scale)
     except ValueError as exc:
         parser.exit(1, f"error: {exc}\n")
