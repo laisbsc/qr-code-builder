@@ -1,0 +1,31 @@
+[project]
+name = "qr-code-builder"
+version = "0.1.0"
+description = "Static QR codes that never expire"
+readme = "README.md"
+authors = [
+    { name = "laiscarvalho", email = "lais@pydantic.dev" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "segno>=1.6.6",
+]
+
+[project.scripts]
+qr-code-builder = "qr_code_builder:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
