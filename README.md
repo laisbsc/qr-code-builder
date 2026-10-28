@@ -1,5 +1,7 @@
 # qr-code-builder
 
+[![CI](https://github.com/laisbsc/qr-code-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/laisbsc/qr-code-builder/actions/workflows/ci.yml)
+
 Static QR codes that never expire. The payload is encoded directly into the
 image; there is no redirect service, no tracking, no account, nothing to lapse.
 
